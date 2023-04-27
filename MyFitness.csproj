@@ -310,6 +310,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

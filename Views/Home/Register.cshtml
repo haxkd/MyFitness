@@ -1,0 +1,50 @@
+﻿@model MyFitness.Models.ProductModel
+
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Register</h2>
+                    <div class="bt-option">
+                        <a href="./index.html">Home</a>
+                        <a href="#">Pages</a>
+                        <span>Contact us</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+@if (ViewBag.msg != null)
+{
+    <div class="container">
+        <div class="alert alert-warning"> @ViewBag.msg </div>
+    </div>
+}
+
+<!-- Contact Section Begin -->
+<section class="contact-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="leave-comment">
+                    <form method="post">
+                        <input type="text" name="name" placeholder="Name">
+                        <input type="email" name="email" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+
+    </div>
+</section>
+<!-- Contact Section End -->
