@@ -1,4 +1,5 @@
 ﻿using MyFitness.Models;
+using Razorpay.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,6 +122,52 @@ namespace MyFitness.Controllers
         }
 
 
+        public ActionResult Buy(int id)
+        {
+            Session["user"] = 1;
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("login");
+            }
+
+            int uid = (int)Session["user"];
+
+
+            var pur = _context.Purchases.FirstOrDefault(y=>y.uid == uid && y.pid == id && y.status=="pending");
+
+            if (pur != null)
+            {
+                ViewBag.orderId = pur.orderId;
+                return View();
+            }
+
+            var product = _context.Products.FirstOrDefault(y=>y.PId==id);
+            int price = Convert.ToInt32(product.PPrice);
+            string your_key_id = "rzp_test_K3ts82hO67KSNu";
+            string your_secret = "qQS6NmcieitGY8LAUkQcDhYv";
+            RazorpayClient client = new RazorpayClient(your_key_id, your_secret);
+            Dictionary<string, object> options = new Dictionary<string, object>();
+            options.Add("amount",  price*100); // amount in the smallest currency unit
+            options.Add("currency", "INR");
+            Order order = client.Order.Create(options);
+            string orderId = order["id"];
+            ViewBag.orderId = orderId;
+
+            Purchase purchase = new Purchase() { 
+                uid = uid,
+                pid = id,
+                orderId = orderId,
+                status = "pending"
+            };
+
+            _context.Purchases.Add(purchase);
+            _context.SaveChanges();
+
+
+
+            return View();
+        }
+
         public ActionResult Subscribe(int id)
         {
             if (Session["user"] == null)
@@ -136,7 +183,6 @@ namespace MyFitness.Controllers
             };
             _context.Records.Add(record);
             _context.SaveChanges();
-
             return RedirectToAction("profile");
         }
 

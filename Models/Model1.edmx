@@ -14,6 +14,19 @@
           <Property Name="PPrice" Type="varchar" MaxLength="50" />
           <Property Name="PDesc" Type="text" />
         </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pid" Type="int" />
+          <Property Name="uid" Type="int" />
+          <Property Name="orderId" Type="varchar" MaxLength="50" />
+          <Property Name="payId" Type="varchar" MaxLength="50" />
+          <Property Name="checksum" Type="text" />
+          <Property Name="date" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="RId" />
@@ -34,6 +47,7 @@
         </EntityType>
         <EntityContainer Name="MyFitnessModelStoreContainer">
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -63,6 +77,7 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Records" EntityType="Self.Record" />
           <EntitySet Name="Users" EntityType="MyFitnessModel.User" />
+          <EntitySet Name="Purchases" EntityType="MyFitnessModel.Purchase" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -72,6 +87,19 @@
           <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pid" Type="Int32" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="orderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="payId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="checksum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -106,6 +134,20 @@
                 <ScalarProperty Name="UEmail" ColumnName="UEmail" />
                 <ScalarProperty Name="UName" ColumnName="UName" />
                 <ScalarProperty Name="UId" ColumnName="UId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="MyFitnessModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="checksum" ColumnName="checksum" />
+                <ScalarProperty Name="payId" ColumnName="payId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

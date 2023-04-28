@@ -81,3 +81,4 @@ C:\Users\Haxkd\source\repos\MyFitness\bin\EntityFramework.dll
 C:\Users\Haxkd\source\repos\MyFitness\bin\EntityFramework.SqlServer.dll
 C:\Users\Haxkd\source\repos\MyFitness\bin\EntityFramework.xml
 C:\Users\Haxkd\source\repos\MyFitness\bin\EntityFramework.SqlServer.xml
+C:\Users\Haxkd\source\repos\MyFitness\bin\Razorpay.dll

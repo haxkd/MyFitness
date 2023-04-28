@@ -40,19 +40,20 @@
                         </thead>
                         <tbody>
 
-                            @{int srno = 1;}
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td> @srno </td>
-                                    <td>@item.PDuration</td>
-                                    <td>@item.PDate</td>
-                                    <td>@item.Validitity</td>
-                                    <td><a class="btn btn-outline-success" href="/Home/Product/@item.PId">See Pack</a></td>
-                                </tr>
-                                srno++;
+                            @{
+                                int srno = 1;
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td> @srno </td>
+                                        <td>@item.PDuration</td>
+                                        <td>@item.PDate</td>
+                                        <td>@item.Validitity</td>
+                                        <td><a class="btn btn-outline-success" href="/Home/Product/@item.PId">See Pack</a></td>
+                                    </tr>
+                                    srno++;
+                                }
                             }
-
                         </tbody>
                     </table>
                 </div>

@@ -22,6 +22,7 @@
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="Records" EntityType="Self.Record" />
     <EntitySet Name="Users" EntityType="MyFitnessModel.User" />
+    <EntitySet Name="Purchases" EntityType="MyFitnessModel.Purchase" />
   </EntityContainer>
   <EntityType Name="User">
     <Key>
@@ -31,5 +32,18 @@
     <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="uid" Type="Int32" />
+    <Property Name="orderId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="payId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="checksum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -9,6 +9,19 @@
     <Property Name="PPrice" Type="varchar" MaxLength="50" />
     <Property Name="PDesc" Type="text" />
   </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pid" Type="int" />
+    <Property Name="uid" Type="int" />
+    <Property Name="orderId" Type="varchar" MaxLength="50" />
+    <Property Name="payId" Type="varchar" MaxLength="50" />
+    <Property Name="checksum" Type="text" />
+    <Property Name="date" Type="date" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Record">
     <Key>
       <PropertyRef Name="RId" />
@@ -29,6 +42,7 @@
   </EntityType>
   <EntityContainer Name="MyFitnessModelStoreContainer">
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
