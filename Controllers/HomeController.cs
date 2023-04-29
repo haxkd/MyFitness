@@ -168,19 +168,28 @@ namespace MyFitness.Controllers
             return View();
         }
 
-        public ActionResult Subscribe(int id)
+        public ActionResult Subscribe(string razorpay_payment_id,string razorpay_order_id, string razorpay_signature)
         {
+            Session["user"] = 1;
+
             if (Session["user"] == null)
             {
                 return RedirectToAction("login");
             }
 
+            var purchase = _context.Purchases.FirstOrDefault(y=>y.orderId== razorpay_order_id);
+            purchase.payId = razorpay_payment_id;
+            purchase.checksum = razorpay_signature;
+            purchase.date = DateTime.Now;
+            purchase.status = "success";
+            _context.SaveChanges();
             Record record = new Record()
             {
                 UId = Convert.ToInt32(Session["user"]),
-                PId = id,
+                PId = purchase.pid,
                 RDate = DateTime.Now,
             };
+
             _context.Records.Add(record);
             _context.SaveChanges();
             return RedirectToAction("profile");

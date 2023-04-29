@@ -11,6 +11,15 @@
 </section>
 
 
+<form method="post" action="/Home/Subscribe">
+    <input type="hidden" name="razorpay_payment_id" value="" id="razorpay_payment_id" />
+    <input type="hidden" name="razorpay_order_id" value="" id="razorpay_order_id" />
+    <input type="hidden" name="razorpay_signature" value="" id="razorpay_signature" />
+    <input type="submit" style="display:none" id="razorpay_submit" />
+</form>
+
+
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 var options = {
@@ -26,6 +35,17 @@ var options = {
         let razorpay_order_id =  response.razorpay_order_id;
         let razorpay_signature = response.razorpay_signature;
 
+        let text_razorpay_payment_id = document.getElementById("razorpay_payment_id");
+        let text_razorpay_order_id = document.getElementById("razorpay_order_id");
+        let text_razorpay_signature = document.getElementById("razorpay_signature");
+        let razorpay_submit = document.getElementById("razorpay_submit");
+
+        text_razorpay_payment_id.value = razorpay_payment_id;
+        text_razorpay_order_id.value = razorpay_order_id;
+        text_razorpay_signature.value = razorpay_signature;
+
+
+        razorpay_submit.click();
 
 
     },
