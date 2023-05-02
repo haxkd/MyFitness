@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MyFitness.Models.Product>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>duration</th>
+            <th>price</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.PId</th>
+                <th>@item.PDuration</th>
+                <th>@item.PPrice</th>
+                <th><a href="/Admin/Edit/@item.PId">Edit</a></th>
+            </tr>
+        }
+    </tbody>
+</table>

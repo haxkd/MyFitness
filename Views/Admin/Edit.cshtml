@@ -1,4 +1,5 @@
-﻿
+﻿@model MyFitness.Models.Product
+
 
 <script>
     tinymce.init({
@@ -33,11 +34,11 @@
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <div class="leave-comment">
-                    <form action="#" method="post">
-                        <input type="text" name="PDuration" placeholder="Product Duration">
-                        <input type="text" name="PPrice" placeholder="Product Price">
-                        <textarea placeholder="Product Description" name="PDesc" id="description"></textarea>
-                        <button type="submit">Add Product</button>
+                    <form method="post">
+                        <input type="text" name="PDuration" value="@Model.PDuration" placeholder="Product Duration">
+                        <input type="text" name="PPrice" value="@Model.PPrice" placeholder="Product Price">
+                        <textarea placeholder="Product Description" name="PDesc" id="description">@Model.PDesc</textarea>
+                        <button type="submit">Update Product</button>
                     </form>
                 </div>
             </div>

@@ -163,8 +163,6 @@ namespace MyFitness.Controllers
             _context.Purchases.Add(purchase);
             _context.SaveChanges();
 
-
-
             return View();
         }
 

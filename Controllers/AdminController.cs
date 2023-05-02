@@ -35,5 +35,26 @@ namespace MyFitness.Controllers
             }
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            var product = _context.Products.FirstOrDefault(y=>y.PId==id);
+            return View(product);
+        }
+        [HttpPost]
+        public ActionResult Edit(int id,ProductModel model)
+        {
+            var product = _context.Products.FirstOrDefault(y => y.PId == id);
+            product.PDesc = model.PDesc;
+            product.PPrice = model.PPrice;
+            product.PDuration = model.PDuration;
+            _context.SaveChanges();
+            return View(product);
+        }
+        public ActionResult Show()
+        {
+            var products = _context.Products.ToList();
+            return View(products);
+        }
     }
 }

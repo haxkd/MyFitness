@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MyFitness.Models
 {
@@ -13,6 +14,7 @@ namespace MyFitness.Models
         [Required]
         public string PPrice { get; set; }
         [Required]
+        [AllowHtml]
         public string PDesc { get; set; }
 
     }
