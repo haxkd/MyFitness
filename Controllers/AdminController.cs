@@ -36,11 +36,13 @@ namespace MyFitness.Controllers
             return View();
         }
 
+
         public ActionResult Edit(int id)
         {
             var product = _context.Products.FirstOrDefault(y=>y.PId==id);
             return View(product);
         }
+
         [HttpPost]
         public ActionResult Edit(int id,ProductModel model)
         {
