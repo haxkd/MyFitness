@@ -20,6 +20,7 @@ namespace MyFitness.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         public ActionResult AddProduct(ProductModel product)
         {
@@ -35,7 +36,6 @@ namespace MyFitness.Controllers
             }
             return View();
         }
-
 
         public ActionResult Edit(int id)
         {
@@ -53,6 +53,7 @@ namespace MyFitness.Controllers
             _context.SaveChanges();
             return View(product);
         }
+        
         public ActionResult Show()
         {
             var products = _context.Products.ToList();
