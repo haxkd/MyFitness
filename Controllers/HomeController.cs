@@ -39,7 +39,6 @@ namespace MyFitness.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult Register(string name, string email, string password)
         {
@@ -51,7 +50,6 @@ namespace MyFitness.Controllers
             };
             _context.Users.Add(user);
             _context.SaveChanges();
-
             ViewBag.msg = "Registration Successfull....!";
             return View();
         }
@@ -64,9 +62,7 @@ namespace MyFitness.Controllers
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-
             var user = _context.Users.FirstOrDefault(x => x.UEmail == email && x.UPassword == password);
-
             if (user != null)
             {
                 Session["user"] = user.UId;
@@ -76,7 +72,6 @@ namespace MyFitness.Controllers
             {
                 ViewBag.msg = "Login UnSuccessfull....!";
             }
-
             return View();
         }
 
@@ -86,29 +81,18 @@ namespace MyFitness.Controllers
             {
                 return RedirectToAction("login");
             }
-
             int UId = Convert.ToInt32(Session["user"]);
-
             var user = _context.Users.FirstOrDefault(y => y.UId == UId);
-
             ViewBag.user = user;
-
             var record = _context.Records.Where(y=>y.UId == UId).ToList();
             var products = _context.Products.ToList();
-
-
             List<RecordModel> recordModels = new List<RecordModel>();
-
             foreach (Record record1 in record)
             {
                 int temp_Pid = (int)record1.PId;
                 DateTime temp_Pdate = (DateTime)record1.RDate;
-
                 var product = products.FirstOrDefault(y=>y.PId==temp_Pid);
-
                 DateTime day = (DateTime)record1.RDate;
-
-
                 RecordModel recordModel = new RecordModel()
                 {
                     PDuration = product.PDuration, // 30
@@ -121,7 +105,6 @@ namespace MyFitness.Controllers
             return View(recordModels);
         }
 
-
         public ActionResult Buy(int id)
         {
             Session["user"] = 1;
@@ -129,18 +112,13 @@ namespace MyFitness.Controllers
             {
                 return RedirectToAction("login");
             }
-
             int uid = (int)Session["user"];
-
-
             var pur = _context.Purchases.FirstOrDefault(y=>y.uid == uid && y.pid == id && y.status=="pending");
-
             if (pur != null)
             {
                 ViewBag.orderId = pur.orderId;
                 return View();
             }
-
             var product = _context.Products.FirstOrDefault(y=>y.PId==id);
             int price = Convert.ToInt32(product.PPrice);
             string your_key_id = "rzp_test_K3ts82hO67KSNu";
@@ -152,29 +130,24 @@ namespace MyFitness.Controllers
             Order order = client.Order.Create(options);
             string orderId = order["id"];
             ViewBag.orderId = orderId;
-
             Purchase purchase = new Purchase() { 
                 uid = uid,
                 pid = id,
                 orderId = orderId,
                 status = "pending"
             };
-
             _context.Purchases.Add(purchase);
             _context.SaveChanges();
-
             return View();
         }
 
         public ActionResult Subscribe(string razorpay_payment_id,string razorpay_order_id, string razorpay_signature)
         {
             Session["user"] = 1;
-
             if (Session["user"] == null)
             {
                 return RedirectToAction("login");
             }
-
             var purchase = _context.Purchases.FirstOrDefault(y=>y.orderId== razorpay_order_id);
             purchase.payId = razorpay_payment_id;
             purchase.checksum = razorpay_signature;
@@ -187,7 +160,6 @@ namespace MyFitness.Controllers
                 PId = purchase.pid,
                 RDate = DateTime.Now,
             };
-
             _context.Records.Add(record);
             _context.SaveChanges();
             return RedirectToAction("profile");
